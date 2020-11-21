@@ -1,3 +1,5 @@
+![pytorch.png](data/pytorch.png)
+
 # Caption Bot - Implementation of Show, Attend and Tell
 
 README in progress. 
