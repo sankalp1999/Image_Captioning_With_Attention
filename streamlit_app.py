@@ -113,7 +113,7 @@ def download_data():
     # path2 = './data/resnet50_captioning.pt'
     print("I am here.")
     if not os.path.exists(path1):
-        decoder_url = 'sudo wget -O ./LastModelResnet50_v2_16.pth.tar https://www.dropbox.com/s/5ntq1bgp33k1197/LastModelResnet50_v2_16.pth.tar?dl=0'
+        decoder_url = 'wget -O ./LastModelResnet50_v2_16.pth.tar https://www.dropbox.com/s/5ntq1bgp33k1197/LastModelResnet50_v2_16.pth.tar?dl=0'
         
         # output = path1
         print('done!\nmodel weights were not found, downloading them...')
@@ -128,7 +128,7 @@ def download_data():
         print("Model 1 is here.")
 
     if not os.path.exists(path2):
-        encoder_url = 'sudo wget -O resnet50_captioning.pt https://www.dropbox.com/s/fot9zzgszkpsab7/resnet50_captioning.pt?dl=0'
+        encoder_url = 'wget -O resnet50_captioning.pt https://www.dropbox.com/s/fot9zzgszkpsab7/resnet50_captioning.pt?dl=0'
         os.system(encoder_url)
     #     torch.hub.download_url_to_file(encoder_url, path2)
     #     # filename = Path(path2)
