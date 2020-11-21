@@ -6,9 +6,6 @@ README in progress. (Partially complete)
 
 The Caption Bot takes your images and generates a caption in less than 40 words. 
 
-The caption bot is trained on Flickr8K dataset which is a relatively small dataset. Caption Bot was only possible because 
-of the great Pytorch Library.
-
 ---
 
 ## Try the CaptionBot yourself!
