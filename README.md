@@ -4,6 +4,12 @@ README in progress. Checking for deployment on streamlit.
 You can check some of the results below.
 
 
+
+
+
+
+
+
 ## The Good
 ![1.png](/imgs/1.png)
 ---
