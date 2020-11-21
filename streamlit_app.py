@@ -104,13 +104,16 @@ class EncoderCNN(nn.Module):
 @st.cache
 def download_data():
     
-    # 107 new added here.
-    os.system('mkdir data')
-    path1 = './data/LastModelResnet50_v2_16.pth.tar'
-    path2 = './data/resnet50_captioning.pt'
+    path1 = './LastModelResnet50_v2_16.pth.tar'
+    path2 = './resnet50_captioning.pt'
+    
+    
+    # Local
+    # path1 = './data/LastModelResnet50_v2_16.pth.tar'
+    # path2 = './data/resnet50_captioning.pt'
     print("I am here.")
     if not os.path.exists(path1):
-        decoder_url = 'wget -O ./data/LastModelResnet50_v2_16.pth.tar https://www.dropbox.com/s/5ntq1bgp33k1197/LastModelResnet50_v2_16.pth.tar?dl=0'
+        decoder_url = 'wget -O LastModelResnet50_v2_16.pth.tar https://www.dropbox.com/s/5ntq1bgp33k1197/LastModelResnet50_v2_16.pth.tar?dl=0'
         
         # output = path1
         print('done!\nmodel weights were not found, downloading them...')
@@ -125,7 +128,7 @@ def download_data():
         print("Model 1 is here.")
 
     if not os.path.exists(path2):
-        encoder_url = 'wget -O ./data/resnet50_captioning.pt https://www.dropbox.com/s/fot9zzgszkpsab7/resnet50_captioning.pt?dl=0'
+        encoder_url = 'wget -O resnet50_captioning.pt https://www.dropbox.com/s/fot9zzgszkpsab7/resnet50_captioning.pt?dl=0'
         os.system(encoder_url)
     #     torch.hub.download_url_to_file(encoder_url, path2)
     #     # filename = Path(path2)
@@ -133,10 +136,6 @@ def download_data():
     #     # filename.write_bytes(r.content)
     else:
         print("Model 2 is here.")
-
-
-
-
 
 # @st.cache
 def load_model():
@@ -146,11 +145,9 @@ def load_model():
 
     # Load the pickle dump
     vocab_path = './vocab.pickle'
-    
 
     with open(vocab_path, 'rb') as f:
         vocab = pickle.load(f)
-    
 
     print(len(vocab))
     embed_size = 256
@@ -159,7 +156,8 @@ def load_model():
     attention_dim = 400
     vocab_size = len(vocab)
     learning_rate = 2e-4 
-    resnet_path = './data/resnet50_captioning.pt'
+    resnet_path = './resnet50_captioning.pt'
+    
     global encoder
     encoder = EncoderCNN()
 
@@ -169,7 +167,7 @@ def load_model():
 
     encoder.eval() # V. important to switch off Dropout and BatchNorm
 
-    decoder_path = './data/LastModelResnet50_v2_16.pth.tar'
+    decoder_path = './LastModelResnet50_v2_16.pth.tar'
 
     global decoder
     decoder = Decoder(encoder_dim, decoder_dim, embed_size, vocab_size, attention_dim, device)    
@@ -185,8 +183,6 @@ def load_model():
 # image_path = 'flickr8k/Images/54501196_a9ac9d66f2.jpg'
 # avoid loading again and again
 
-
-
 def predict_caption(image_bytes):
     
     captions = []
@@ -196,18 +192,13 @@ def predict_caption(image_bytes):
         caps = decoder.beam_search(encoded_output,i)
         caps = caps[1:-1]
         caption = [vocab.itos[idx] for idx in caps]
-
         caption = ' '.join(caption)
-
         print(caption)
-
         captions.append(caption)
     return captions
 
 
 def main():
-  
-
     
     print("I came here.")
     if(img is not None):
@@ -215,21 +206,15 @@ def main():
         img_bytes = img.read()
         image = Image.open(io.BytesIO(img_bytes) ).convert("RGB")
         st.image(image,width=500,caption="Your image")
-         
-
 
         captions = predict_caption(img_bytes)
         for i in range(len(captions)):
             s = ("** Prediction " + str(i + 1) + ": " + captions[i] + "**")
             st.markdown(s)   
         st.success("You can try multiple times by uploading another file or same file")
- 
-        
-
 
 if __name__ == '__main__':
 
-    
     download_data()
     load_model()
     image = Image.open('data/pytorch.png')
@@ -245,4 +230,3 @@ if __name__ == '__main__':
     img  = st.file_uploader(label= 'Upload Image', type = ['png', 'jpg', 'jpeg'])
  
     main()
-
