@@ -2,19 +2,31 @@
 
 # Caption Bot - Implementation of Show, Attend and Tell
 
-README in progress. 
+README in progress. (Partially complete)
 
-# Try the CaptionBot yourself!
+The Caption Bot takes your images and generates a caption in less than 40 words. 
+
+The caption bot is trained on Flickr8K dataset which is a relatively small dataset. Caption Bot was only possible because 
+of the great Pytorch Library.
+
+---
+
+## Try the CaptionBot yourself!
 
 Check out yourself [here](https://share.streamlit.io/sankalp1999/image_captioning/main).
 Some points while selecting images if you don't want (funny) predictions
 1. Preferably, select from PC because for some reason, (on smartphone, it opens the camera or uploaded image is rotated). Try opening the application on Chrome if on 
 smartphone.
 2. You could select images like your profile pictures, dogs, anything which has some meaning in it etc. You can try
-out multiple images once you have submitted one by just using "Browse File". Close ups preferred.
+out multiple images once you have submitted one by just using "Browse File". 
+
 3. Enjoy!
 
 You can check some of the results below.
+
+
+
+
 
 
 ## The Good
