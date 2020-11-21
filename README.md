@@ -2,7 +2,7 @@
 
 README in progress. 
 
-The model is up and working. Check out yourself [here].(https://share.streamlit.io/sankalp1999/image_captioning/main)
+The model is up and working. Check out yourself [here](https://share.streamlit.io/sankalp1999/image_captioning/main).
 Some points while selecting images if you don't want (funny) predictions
 1. Preferably, select from PC because for some reason, (on smartphone, it opens the camera or uploaded image is rotated). Try opening the application on Chrome if on 
 smartphone.
