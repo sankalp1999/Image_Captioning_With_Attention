@@ -103,7 +103,9 @@ class EncoderCNN(nn.Module):
 
 @st.cache
 def download_data():
-    os.system("mkdir data")
+    
+    # 107 new added here.
+    os.system('mkdir data')
     path1 = './data/LastModelResnet50_v2_16.pth.tar'
     path2 = './data/resnet50_captioning.pt'
     print("I am here.")
