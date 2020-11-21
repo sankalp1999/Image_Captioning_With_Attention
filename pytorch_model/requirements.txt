@@ -1,4 +1,5 @@
 -f https://download.pytorch.org/whl/torch_stable.html
+python -m spacy download en
 Flask==1.1.2
 pandas==1.0.3
 torchvision==0.7.0+cpu
