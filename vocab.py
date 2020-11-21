@@ -4,8 +4,9 @@ import spacy # for tokenizer
 import torch
 import pickle
 # python -m spacy download en
-spacy_eng = spacy.load("en")
 
+# spacy_eng = spacy.load("en")
+spacy_eng = spacy.load('en_core_web_sm')
 class Vocab_Builder:
     
     def __init__ (self,freq_threshold):
