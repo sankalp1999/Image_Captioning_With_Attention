@@ -2,12 +2,14 @@
 
 README in progress. 
 
-The model is up and working. Check out yourself [here](https://share.streamlit.io/sankalp1999/image_captioning/main).
+# Try the CaptionBot yourself!
+
+Check out yourself [here](https://share.streamlit.io/sankalp1999/image_captioning/main).
 Some points while selecting images if you don't want (funny) predictions
 1. Preferably, select from PC because for some reason, (on smartphone, it opens the camera or uploaded image is rotated). Try opening the application on Chrome if on 
 smartphone.
 2. You could select images like your profile pictures, dogs, anything which has some meaning in it etc. You can try
-out multiple images once you have submitted one by just using "Browse File
+out multiple images once you have submitted one by just using "Browse File". Close ups preferred.
 3. Enjoy!
 
 You can check some of the results below.
@@ -24,9 +26,7 @@ You can check some of the results below.
 ---
 
 
-
-
-## Streamlit (local as of now)
+## Streamlit samples
 ![st1.png](/imgs/st1.png)
 ---
 ![st2.png](/imgs/st2.png)
