@@ -4,7 +4,7 @@
 
 README in progress. (Partially complete)
 
-The Caption Bot takes your images and generates a caption in less than 40 words. 
+The Caption Bot takes your images and generates a caption in less than 40 words (even though a picture is worth a thousand words.....)
 
 ---
 
