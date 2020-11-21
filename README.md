@@ -1,9 +1,11 @@
 # Caption Bot - Implementation of Show, Attend and Tell
 
-README in progress. Checking for deployment on streamlit.
+README in progress. 
+
+The model is up and working. Check out yourself [here](https://share.streamlit.io/sankalp1999/image_captioning/main)
+
+
 You can check some of the results below.
-
-
 
 
 
