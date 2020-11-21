@@ -1,5 +1,5 @@
 -f https://download.pytorch.org/whl/torch_stable.html
-python -m spacy download en
+pip install spacy==0.101.0
 torchvision==0.7.0+cpu
 torch==1.6.0+cpu
 pandas==1.0.3
