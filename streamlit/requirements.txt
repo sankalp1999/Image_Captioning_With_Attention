@@ -1,9 +1,0 @@
--f https://download.pytorch.org/whl/torch_stable.html
-torchvision==0.7.0+cpu
-torch==1.6.0+cpu
-pandas==1.0.3
-spacy==2.3.2
-wget==3.2
-streamlit==0.71.0
-requests==2.22.0
-Pillow==8.0.1

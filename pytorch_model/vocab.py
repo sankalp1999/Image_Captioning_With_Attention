@@ -55,3 +55,25 @@ class Vocab_Builder:
         text = [self.itos[token] if token in self.itos else self.itos[3]]
         return text
 
+
+def serialize():
+    data_location =  "flickr8k"
+    caption_file = 'flickr8k/captions.txt'
+
+
+    vocabulary = Vocab_Builder(freq_threshold = 2)
+
+    df = pd.read_csv(data_location+"/captions.txt")
+
+    captions = df["caption"]
+
+    split_factor = 37500
+
+    captions = captions[0:split_factor]
+
+    vocabulary.build_vocabulary(captions.tolist())
+
+    print(len(vocabulary))
+
+    with open('vocab.pickle', 'wb') as f:
+        pickle.dump(vocabulary, f, protocol=pickle.HIGHEST_PROTOCOL)

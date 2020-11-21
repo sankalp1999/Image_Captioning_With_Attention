@@ -1,10 +1,9 @@
 -f https://download.pytorch.org/whl/torch_stable.html
-Flask==1.1.2
-pandas==1.0.3
 torchvision==0.7.0+cpu
-nltk==3.4.5
-spacy==2.3.2
 torch==1.6.0+cpu
-matplotlib==3.1.3
+pandas==1.0.3
+spacy==2.3.2
+wget==3.2
+streamlit==0.71.0
+requests==2.22.0
 Pillow==8.0.1
-torchtext==0.8.0
