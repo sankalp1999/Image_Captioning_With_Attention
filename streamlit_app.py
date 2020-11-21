@@ -19,9 +19,6 @@ import wget
 device = 'cpu'
 
 
-
-
-
 def transform_image(img_bytes):
     mean = [0.485, 0.456, 0.406]
 
@@ -106,6 +103,7 @@ class EncoderCNN(nn.Module):
 
 @st.cache
 def download_data():
+    os.system("mkdir data")
     path1 = './data/LastModelResnet50_v2_16.pth.tar'
     path2 = './data/resnet50_captioning.pt'
     print("I am here.")
