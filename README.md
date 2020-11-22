@@ -198,13 +198,13 @@ Thus, this seems like the model can attend to different features of the image an
 
 We pass this context vector with the embedding to the decoder. Then, we get the predictions and repeat. (Train time) 
 
-![attention](imgs/attention)
+![attention.png](imgs/attention.png)
 
 For better visualization, refer [this](https://youtu.be/StOFwSRBwMo) video.
 
 The BahdanauAttention class in the [model.py](http://model.py) file is implementing the attention network which calculates the attention weights(alphas) and context vector.
 
-![attention_maths](imgs/attention_maths)
+![attention_maths.png](imgs/attention_maths.png)
 
 ### Greedy decoding
 
