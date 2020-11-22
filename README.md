@@ -4,7 +4,7 @@
 
 README in progress. (Partially complete)
 
-The [Caption Bot]((https://share.streamlit.io/sankalp1999/image_captioning/main)) takes your images and generates a caption in less than 40 words (even though a picture is worth a thousand words.....)
+The [Caption Bot](https://share.streamlit.io/sankalp1999/image_captioning/main) takes your images and generates a caption in less than 40 words (even though a picture is worth a thousand words.....)
 
 ---
 
