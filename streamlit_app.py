@@ -127,10 +127,10 @@ def download_data():
     if not os.path.exists(path2):
         encoder_url = 'wget -O resnet50_captioning.pt https://www.dropbox.com/s/fot9zzgszkpsab7/resnet50_captioning.pt?dl=0'
         os.system(encoder_url)
-    #     torch.hub.download_url_to_file(encoder_url, path2)
-    #     # filename = Path(path2)
-    #     # r = requests.get(encoder_url)
-    #     # filename.write_bytes(r.content)
+        # torch.hub.download_url_to_file(encoder_url, path2)
+        # filename = Path(path2)
+        # r = requests.get(encoder_url)
+        # filename.write_bytes(r.content)
     else:
         print("Model 2 is here.")
 
@@ -209,6 +209,7 @@ def main():
             s = ("** Prediction " + str(i + 1) + ": " + captions[i] + "**")
             st.markdown(s)   
         st.success("You can try multiple times by uploading another file or same file")
+        st.balloons()
 
 if __name__ == '__main__':
 
