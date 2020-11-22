@@ -2,7 +2,7 @@
 
 # [CaptionBot - Implementation of Show, Attend and Tell](https://arxiv.org/pdf/1502.03044.pdf)
 
-README in progress. (Partially complete)
+
 
 The [Caption Bot](https://share.streamlit.io/sankalp1999/image_captioning/main) takes your images and generates a caption in less than 40 words (even though a picture is worth a thousand words.....)
 
@@ -14,6 +14,18 @@ Check out yourself [here](https://share.streamlit.io/sankalp1999/image_captionin
 
 
 You can check some of the results [below](https://github.com/sankalp1999/Image_Captioning/blob/main/README.md#the-good).
+---
+
+Contents of README
+- [Repository structure](https://github.com/sankalp1999/Image_Captioning#repository-structure)
+- [Running locally](https://github.com/sankalp1999/Image_Captioning#repository-structure)
+- [Good predictions](https://github.com/sankalp1999/Image_Captioning#repository-structure)
+- [Streamlit samples](https://github.com/sankalp1999/Image_Captioning#streamlit-samples)
+- [Model architecture and Concepts](https://github.com/sankalp1999/Image_Captioning#model-architecture)
+- [Results](https://github.com/sankalp1999/Image_Captioning#results)
+- [References](https://github.com/sankalp1999/Image_Captioning#references)
+
+Why contents? It's fairly long and ..
 
 ---
 
@@ -95,10 +107,10 @@ streamlit run streamlit_app.py # Run the app on local machine
 Additional note: The only difference between the requirements.txt files is streamlit.
 Streamlit is a great platform which made the deployment part much easier. It's harder to deploy on Heroku.
 
-
-
-
 ## The Good
+More examples can be directly seen on the .ipynb file in pytorch_model/kaggle_notebook.
+
+
 ![1.png](/imgs/1.png)
 ---
 ![2.png](/imgs/2.png)
@@ -144,7 +156,7 @@ Based on the paper - Show, Attend and Tell
 
 Flickr8K- It is a relatively small dataset of 8000 images with 5 captions each. There are two versions found on the web - one with splits and one without splits. I used the latter and created manual split. 
 
-![archi.jpg](imgs/archi.jpg)
+![archi.jpeg](imgs/archi.jpeg)
 
 ### Encoder
 
@@ -253,7 +265,8 @@ BLEU-4 0.22571180760860443
 
 ---
 
-## References and Credits
+## References 
+I would like to thank all of them for the great learning experience.
 
 Pytorch Framework for being so incredibly useful.
 
