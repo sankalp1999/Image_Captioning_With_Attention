@@ -197,6 +197,13 @@ def predict_caption(image_bytes):
 
 def main():
     
+    st.sidebar.title("Tips")
+    st.sidebar.text("If you are getting funny predictions \n")
+    st.sidebar.text("1. Prefer using the app from PC.")
+    st.sidebar.text("2. Try putting images which are less \n complex.")
+    st.sidebar.text("3. CaptionBot likes dogs and people  \n more!")
+    st.sidebar.text("4. Profile pictures(Whatsapp) are \n good candidates!")
+    
     print("I came here.")
     if(img is not None):
         print("HERE")
