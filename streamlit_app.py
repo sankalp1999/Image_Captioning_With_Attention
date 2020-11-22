@@ -7,7 +7,7 @@ import torch.optim as optim
 import torchvision.transforms as transforms
 import torch.nn.functional as F
 import torchvision.models as models
-from PIL import Image
+from PIL import Image, ImageOps
 import io
 import time
 import streamlit as st
@@ -202,6 +202,10 @@ def main():
         print("HERE")
         img_bytes = img.read()
         image = Image.open(io.BytesIO(img_bytes) ).convert("RGB")
+        
+        # Auto - orient refer https://stackoverflow.com/a/58116860
+        image = ImageOps.exif_transpose(image) 
+        
         st.image(image,width=500,caption="Your image")
 
         captions = predict_caption(img_bytes)
