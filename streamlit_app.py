@@ -7,7 +7,6 @@ import torch.optim as optim
 import torchvision.transforms as transforms
 import torch.nn.functional as F
 import torchvision.models as models
-# from torch.utils.tensorboard import SummaryWriter
 from PIL import Image
 import io
 import time
@@ -31,8 +30,6 @@ def transform_image(img_bytes):
     )
     image = Image.open(io.BytesIO(img_bytes) ).convert("RGB")
     return transform(image)
-
-
 
 def load_checkpoint(checkpoint, model, optimizer):
     
@@ -101,7 +98,7 @@ class EncoderCNN(nn.Module):
 
         return features
 
-@st.cache
+# @st.cache
 def download_data():
     
     path1 = './LastModelResnet50_v2_16.pth.tar'
