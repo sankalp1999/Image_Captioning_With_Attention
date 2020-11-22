@@ -157,6 +157,7 @@ Based on the paper - Show, Attend and Tell
 
 Flickr8K- It is a relatively small dataset of 8000 images with 5 captions each. There are two versions found on the web - one with splits and one without splits. I used the latter and created manual split. 
 
+### Seq2Seq model
 ![archi.jpeg](imgs/archi.jpeg)
 
 ### Encoder
