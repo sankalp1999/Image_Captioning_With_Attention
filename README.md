@@ -281,9 +281,9 @@ BLEU-4 0.22571180760860443
 ---
 
 ## References and Acknowledgement
-I would like to thank all of them for the great learning experience.
+I would like to thank all of them for the great learning experience. 
 
-Pytorch Framework for being so incredibly useful.
+Pytorch Framework for being so incredibly useful. Thanks to Kaggle(Google) for the kernels which provide free ~40 hr GPU training per week.
 
 Streamlit for an amazing deployment experience. 
 
