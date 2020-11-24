@@ -310,7 +310,7 @@ Special thanks to great friend [@sahilkhose](https://github.com/sahilkhose) for 
 ---
 
 ## Where can we go from here?
-![nlp.jpg](imgs/nlp.jpg)
+![nlp.png](imgs/nlp.png)
 
 
 It turns out all the concepts used in this project were introduced before 2017. There have been a lot of developments since then so there is lot more than meets the eye. There is always a lot to learn..... This project is another stepping stone.
