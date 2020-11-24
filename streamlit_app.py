@@ -237,8 +237,8 @@ if __name__ == '__main__':
     st.sidebar.text("3. CaptionBot likes dogs and people  \n more!")
     st.sidebar.text("4. Profile pictures(Whatsapp) are \n good candidates!")
     
-    st.sidebar.markdown('Check out the model architecture \n of Caption Bot [here](https://github.com/sankalp1999/Image_Captioning) \n
-    If you liked it, give a :star: ) ')
+    st.sidebar.markdown("Check out the model architecture \n of Caption Bot [here](https://github.com/sankalp1999/Image_Captioning) \n
+    If you liked it, give a :star: ) ")
     
     st.image(image,width=500,caption="Your image")
 
