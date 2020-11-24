@@ -237,11 +237,6 @@ if __name__ == '__main__':
     3. CaptionBot likes dogs, men, women and kids.
     4. Profile pictures(Whatsapp) are \n good candidates!
     ''')
-#     st.sidebar.text("If you are getting funny predictions \n")
-#     st.sidebar.text("1. Prefer using the app from PC.")
-#     st.sidebar.text("2. Try putting images which are less \n complex.")
-#     st.sidebar.text("3. CaptionBot likes dogs and people  \n more!")
-#     st.sidebar.text("4. Profile pictures(Whatsapp) are \n good candidates!")
     
     st.sidebar.markdown('''Check the source code [here](https://github.com/sankalp1999/Image_Captioning)
     \n Liked it? Give a :star:  on GitHub ''')
@@ -253,5 +248,3 @@ if __name__ == '__main__':
         predict_caption(image)
         st.success("Click again to get retry or try a different image")
         st.balloons()
-
-    
