@@ -126,8 +126,8 @@ def download_data():
 
     if not os.path.exists(path2):
         encoder_url = 'wget -O ./resnet50_captioning.pt https://www.dropbox.com/s/fot9zzgszkpsab7/resnet50_captioning.pt?dl=0'
-        with st.spinner('Downloading model weights for resnet50')
-        os.system(encoder_url)
+        with st.spinner('Downloading model weights for resnet50'):
+            os.system(encoder_url)
     else:
         print("Model 2 is here.")
 
@@ -191,12 +191,28 @@ def predict_caption(image_bytes):
         captions.append(caption)
     return captions
 
+@st.cache(ttl=3600, max_entries=10)
+def load_output_image(img):
+    img_bytes = img.read()
+    image = Image.open(io.BytesIO(img_bytes) ).convert("RGB")
+    # Auto - orient refer https://stackoverflow.com/a/58116860
+    image = ImageOps.exif_transpose(image) 
+    return image
+
+@st.cache(ttl=3600, max_entries=10)
+def pypng():
+    image = Image.open('data/pytorch.png')
+    return image
+    
+
 if __name__ == '__main__':
 
     download_data()
     vocab, encoder, decoder = load_model()
-    image = Image.open('data/pytorch.png')
-    st.image(image, width = 500)
+    
+    pytorch_image = pypng()
+    st.image(pytorch_image, width = 500)
+    
     st.title("The Image Captioning Bot")
     st.text("")
     st.text("")
@@ -205,9 +221,14 @@ if __name__ == '__main__':
 
     st.info("If nothing happens after 10 seconds of uploading, reload the page and select again.")
     
-    img  = st.file_uploader(label= 'Upload Image', type = ['png', 'jpg', 'jpeg'])
- 
-        
+    args = { 'sunset' : 'imgs/dogred.jpeg' }
+    
+    img_upload  = st.file_uploader(label= 'Upload Image', type = ['png', 'jpg', 'jpeg'])
+    
+    img_open = args['sunset'] if img_upload is None else img_upload
+    
+    image = load_output_image(img_open)
+    
     st.sidebar.title("Tips")
     st.sidebar.text("If you are getting funny predictions \n")
     st.sidebar.text("1. Prefer using the app from PC.")
@@ -215,20 +236,13 @@ if __name__ == '__main__':
     st.sidebar.text("3. CaptionBot likes dogs and people  \n more!")
     st.sidebar.text("4. Profile pictures(Whatsapp) are \n good candidates!")
     
-    print("I came here.")
-    if(img is not None):
-        print("HERE")
-        img_bytes = img.read()
-        image = Image.open(io.BytesIO(img_bytes) ).convert("RGB")
-        
-        # Auto - orient refer https://stackoverflow.com/a/58116860
-        image = ImageOps.exif_transpose(image) 
-        
-        st.image(image,width=500,caption="Your image")
+    st.image(image,width=500,caption="Your image")
 
-        captions = predict_caption(img_bytes)
-        for i in range(len(captions)):
-            s = ("** Prediction " + str(i + 1) + ": " + captions[i] + "**")
-            st.markdown(s)   
-        st.success("You can try multiple times by uploading another file or same file")
-        st.balloons()
+    # img_bytes earlier
+    captions = predict_caption(image)
+    
+    for i in range(len(captions)):
+        s = ("** Prediction " + str(i + 1) + ": " + captions[i] + "**")
+        st.markdown(s)   
+    st.success("You can try multiple times by uploading another file or same file")
+    st.balloons()
