@@ -27,7 +27,7 @@ Contents of README
 - [Streamlit samples](https://github.com/sankalp1999/Image_Captioning#streamlit-samples)
 - [Model architecture and Concepts](https://github.com/sankalp1999/Image_Captioning#model-architecture)
 - [Results](https://github.com/sankalp1999/Image_Captioning#results)
-- [References](https://github.com/sankalp1999/Image_Captioning#references)
+- [References](https://github.com/sankalp1999/Image_Captioning#references-and-acknowledgement)
 
 
 ---
