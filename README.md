@@ -289,7 +289,7 @@ Streamlit for an amazing deployment experience.
 
 **Papers** 
 
-[Show, Attend and Tell](https://www.youtube.com/redirect?q=https%3A%2F%2Farxiv.org%2Fpdf%2F1502.03044.pdf&v=W2rWgXJBZhU&redir_token=QUFFLUhqbV90V2s0TVhUWnYyNm9Tb25OVlUyVUNRaFdkd3xBQ3Jtc0tsbGNJcXFHejFqbUNmV1lUWlZYS1JTYmxlRk1FUF82SG15TFlfQmZzUEs4a3FvSFJnQlI0dm5YX3pKMG1PaDFKYjBTblc3ZnlGMFNNZTN6X2VoSU5lWHpaakxJNkJxaWF4OHlTdTZzQm9PRUhRSHJSOA%3D%3D&event=video_description)
+[Show, Attend and Tell](https://arxiv.org/abs/1502.03044)
 
 [Show and Tell](https://arxiv.org/abs/1411.4555)
 
