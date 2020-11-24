@@ -184,7 +184,9 @@ def predict_caption(image_bytes):
         caption = ' '.join(caption)
         print(caption)
         captions.append(caption)
-    return captions
+    for i in range(len(captions)):
+        s = ("** Prediction " + str(i + 1) + ": " + captions[i] + "**")
+        st.markdown(s)        
 
 @st.cache(ttl=3600, max_entries=10)
 def load_output_image(img):
@@ -238,10 +240,8 @@ if __name__ == '__main__':
     st.image(image,width=500,caption="Your image")
 
     # img_bytes earlier
-    captions = predict_caption(image)
-    
-    for i in range(len(captions)):
-        s = ("** Prediction " + str(i + 1) + ": " + captions[i] + "**")
-        st.markdown(s)   
-    st.success("You can try multiple times by uploading another file or same file")
+    if( st.button('Generate captions!'):
+        predict_caption(image)
+
+    st.success("Click again to get retry or try a different image")
     st.balloons()
