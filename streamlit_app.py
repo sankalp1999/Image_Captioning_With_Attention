@@ -15,7 +15,13 @@ import requests
 import os
 from io import BytesIO
 import wget
+
 device = 'cpu'
+
+st.set_page_config(
+    initial_sidebar_state="expanded",
+    page_title="CaptionBot"
+)
 
 
 def transform_image(img_bytes):
@@ -38,6 +44,7 @@ def load_checkpoint(checkpoint, model, optimizer):
     step = checkpoint["step"]
     return step
 
+
 class EncoderCNN(nn.Module):
    
     '''
@@ -48,7 +55,7 @@ class EncoderCNN(nn.Module):
      the image"
         
     '''
-
+    @st.cache(ttl=3600,max_entries=10)
     def __init__(self, encoded_size=14, train_CNN = False):
         
         super(EncoderCNN, self).__init__()
@@ -98,46 +105,36 @@ class EncoderCNN(nn.Module):
 
         return features
 
-# @st.cache
+@st.cache
 def download_data():
     
     path1 = './LastModelResnet50_v2_16.pth.tar'
     path2 = './resnet50_captioning.pt'
     
-    
     # Local
     # path1 = './data/LastModelResnet50_v2_16.pth.tar'
     # path2 = './data/resnet50_captioning.pt'
-    print("I am here.")
+    # print("I am here.")
+    
     if not os.path.exists(path1):
         decoder_url = 'wget -O ./LastModelResnet50_v2_16.pth.tar https://www.dropbox.com/s/5ntq1bgp33k1197/LastModelResnet50_v2_16.pth.tar?dl=0'
         
-        # output = path1
-        print('done!\nmodel weights were not found, downloading them...')
-        os.system(decoder_url)
-        # torch.hub.download_url_to_file(decoder_url, path1)
-
-        # os.makedirs(os.path.join(data_dir, 'models'), exist_ok=True)
-        # filename = Path(path1)
-        # r = requests.get(decoder_url)
-        # filename.write_bytes(r.content)
+        with st.spinner('done!\nmodel weights were not found, downloading them...'):
+            os.system(decoder_url)
     else:
         print("Model 1 is here.")
 
     if not os.path.exists(path2):
-        encoder_url = 'wget -O resnet50_captioning.pt https://www.dropbox.com/s/fot9zzgszkpsab7/resnet50_captioning.pt?dl=0'
+        encoder_url = 'wget -O ./resnet50_captioning.pt https://www.dropbox.com/s/fot9zzgszkpsab7/resnet50_captioning.pt?dl=0'
+        with st.spinner('Downloading model weights for resnet50')
         os.system(encoder_url)
-        # torch.hub.download_url_to_file(encoder_url, path2)
-        # filename = Path(path2)
-        # r = requests.get(encoder_url)
-        # filename.write_bytes(r.content)
     else:
         print("Model 2 is here.")
 
-# @st.cache
+@st.cache
 def load_model():
     
-    global vocab
+    # global vocab
     vocab = Vocab_Builder(freq_threshold = 2)
 
     # Load the pickle dump
@@ -155,20 +152,18 @@ def load_model():
     learning_rate = 2e-4 
     resnet_path = './resnet50_captioning.pt'
     
-    global encoder
+    # global encoder
     encoder = EncoderCNN()
 
     # Don't want to download pretrained resnet again even though not even fine-tuned!
     encoder.load_state_dict( torch.load( resnet_path, map_location = 'cpu') )
     encoder.to(device)
-
     encoder.eval() # V. important to switch off Dropout and BatchNorm
 
     decoder_path = './LastModelResnet50_v2_16.pth.tar'
 
-    global decoder
+    # global decoder
     decoder = Decoder(encoder_dim, decoder_dim, embed_size, vocab_size, attention_dim, device)    
-
 
     optimizer = optim.Adam(decoder.parameters(), lr = learning_rate)
     
@@ -176,6 +171,8 @@ def load_model():
 
     decoder = decoder.to(device)
     decoder.eval()
+    
+    return vocab, encoder, decoder
 
 # image_path = 'flickr8k/Images/54501196_a9ac9d66f2.jpg'
 # avoid loading again and again
@@ -194,9 +191,23 @@ def predict_caption(image_bytes):
         captions.append(caption)
     return captions
 
+if __name__ == '__main__':
 
-def main():
+    download_data()
+    vocab, encoder, decoder = load_model()
+    image = Image.open('data/pytorch.png')
+    st.image(image, width = 500)
+    st.title("The Image Captioning Bot")
+    st.text("")
+    st.text("")
+    st.success("Welcome! Please upload an image!"
+    )   
+
+    st.info("If nothing happens after 10 seconds of uploading, reload the page and select again.")
     
+    img  = st.file_uploader(label= 'Upload Image', type = ['png', 'jpg', 'jpeg'])
+ 
+        
     st.sidebar.title("Tips")
     st.sidebar.text("If you are getting funny predictions \n")
     st.sidebar.text("1. Prefer using the app from PC.")
@@ -221,21 +232,3 @@ def main():
             st.markdown(s)   
         st.success("You can try multiple times by uploading another file or same file")
         st.balloons()
-
-if __name__ == '__main__':
-
-    download_data()
-    load_model()
-    image = Image.open('data/pytorch.png')
-    st.image(image, width = 500)
-    st.title("The Image Captioning Bot")
-    st.text("")
-    st.text("")
-    st.success("Welcome! Please upload an image!"
-    )   
-
-    st.info("If nothing happens after 10 seconds of uploading, reload the page and select again.")
-    
-    img  = st.file_uploader(label= 'Upload Image', type = ['png', 'jpg', 'jpeg'])
- 
-    main()
