@@ -54,7 +54,7 @@ class EncoderCNN(nn.Module):
      the image"
         
     '''
-    @st.cache(ttl=3600,max_entries=10)
+#     @st.cache(ttl=3600,max_entries=10) solved internal hash error
     def __init__(self, encoded_size=14, train_CNN = False):
         
         super(EncoderCNN, self).__init__()
