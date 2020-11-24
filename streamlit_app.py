@@ -238,7 +238,8 @@ if __name__ == '__main__':
     st.sidebar.text("4. Profile pictures(Whatsapp) are \n good candidates!")
     
     st.sidebar.markdown('''Check the source code [here](https://github.com/sankalp1999/Image_Captioning)
-     If you liked it, give a :star:  ''')
+    
+    Liked it? Give a :star:  ''')
     
     st.image(image,width=500,caption="Your image")
 
