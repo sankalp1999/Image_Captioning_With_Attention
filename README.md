@@ -6,6 +6,8 @@
 
 The [Caption Bot](https://share.streamlit.io/sankalp1999/image_captioning/main) takes your images and generates a caption in less than 40 words (even though a picture is worth a thousand words.....)
 
+Update: The app might be down due to exceeding resource limit. I am making changes to avoid that. 
+
 ---
 
 ## Try the CaptionBot yourself!
@@ -27,7 +29,6 @@ Contents of README
 - [Results](https://github.com/sankalp1999/Image_Captioning#results)
 - [References](https://github.com/sankalp1999/Image_Captioning#references)
 
-Why contents? It's fairly long and ..
 
 ---
 
@@ -125,16 +126,22 @@ More examples can be directly seen on the .ipynb file in pytorch_model/kaggle_no
 
 ## Streamlit samples
 ![st1.png](/imgs/st1.png)
+
 ---
+
 ![st2.png](/imgs/st2.png)
 
 
-Let's see how this was possible.
+Let's see how this was possible in the next section.
+
+---
+
+
 ## Model Architecture
 
 ### General idea
 
-The model works on sequence-to-sequence learning (Seq2Seq). This was introduced by [google](https://papers.nips.cc/paper/2014/file/a14ac55a4f27472c5d894ec1c3c743d2-Paper.pdf) in 2014.(Check out [this](https://www.youtube.com/watch?v=MqugtGD605k&ab_channel=Weights%26Biases)  and  [video](https://youtu.be/oF0Rboc4IJw) for a quick understanding of the key concepts.)
+The model works on sequence-to-sequence learning (Seq2Seq). This was introduced by [Google](https://papers.nips.cc/paper/2014/file/a14ac55a4f27472c5d894ec1c3c743d2-Paper.pdf) in 2014.(Check out [this](https://www.youtube.com/watch?v=MqugtGD605k&ab_channel=Weights%26Biases)  and  [video](https://youtu.be/oF0Rboc4IJw) for a quick understanding of the key concepts.)
 
 So in simple words, the encoder's task is to identify the features of the input (text in NMT or image in Image Captioning). These representations are provided to the "Decoder" to decode some outputs. 
 
@@ -159,6 +166,7 @@ Based on the paper - Show, Attend and Tell
 Flickr8K- It is a relatively small dataset of 8000 images with 5 captions each. There are two versions found on the web - one with splits and one without splits. I used the latter and created manual split. 
 
 ### Seq2Seq model
+
 ![archi.jpeg](imgs/archi.jpeg)
 
 ### Encoder
@@ -232,6 +240,8 @@ During training time, i used the greedy caption (for the first three-four models
 Suboptimal choice —> Not the best word —> Totally different sentence —> Bad alignment  with image
 
 ### Beam Search
+The greedy algorithm can lead to sub-optimal solution. Another solution is to use Exhaustive Search but it's time complexity would be exponential hence
+this is not feasible. So, we turn to beam search.
 
 Beam search is the game-changer. This part in the code is heavily inspired from sgrvinod implementation.
 
@@ -244,6 +254,8 @@ The predictions in the CaptionBot are with beam indices 2..5
 ## Results
 
 ![bleu.jpg](imgs/bleu.jpg)
+
+**Request** - If you are able to find some issue with the model which could have led to low BLEU scores, please inform.
 
 The model is giving pretty accurate predictions for most of the items in the dataset and outside also. But the BLEU score is low. This is probably something missing in the model because the authors attained a higher score on the paper.
 
@@ -268,7 +280,7 @@ BLEU-4 0.22571180760860443
 
 ---
 
-## References 
+## References and Acknowledgement
 I would like to thank all of them for the great learning experience.
 
 Pytorch Framework for being so incredibly useful.
@@ -296,5 +308,10 @@ Stackoverflow for 100's of bugs I faced.
 Special thanks to great friend [@sahilkhose](https://github.com/sahilkhose) for helping and guiding me in tough situations.
 
 ---
+
+## Where can you go from here?
+It turns out all the concepts used in this project were introduced before 2017. There have been a lot of developments since then.
+
+
 
 
