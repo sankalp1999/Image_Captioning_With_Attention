@@ -240,7 +240,7 @@ if __name__ == '__main__':
     st.image(image,width=500,caption="Your image")
 
     # img_bytes earlier
-    if( st.button('Generate captions!'):
+    if st.button('Generate captions!'):
         predict_caption(image)
 
     st.success("Click again to get retry or try a different image")
