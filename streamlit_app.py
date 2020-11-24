@@ -246,5 +246,5 @@ if __name__ == '__main__':
     # img_bytes earlier
     if st.button('Generate captions!'):
         predict_caption(image)
-        st.success("Click again to get retry or try a different image")
+        st.success("Click again to retry or try a different image by uploading")
         st.balloons()
