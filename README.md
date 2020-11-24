@@ -309,8 +309,17 @@ Special thanks to great friend [@sahilkhose](https://github.com/sahilkhose) for 
 
 ---
 
-## Where can you go from here?
-It turns out all the concepts used in this project were introduced before 2017. There have been a lot of developments since then.
+## Where can we go from here?
+![nlp.jpg](imgs/nlp.jpg)
+
+
+It turns out all the concepts used in this project were introduced before 2017. There have been a lot of developments since then so there is lot more than meets the eye. There is always a lot to learn..... This project is another stepping stone.
+
+More specifically, many different variants of attention mechanism. Then, researchers developed Self-attention which is a basic building block for the "Transformers" and is used in certain GANs. For more info, Justin Johnson has a great [lecture](https://youtu.be/YAgjfMR9R_M) on this(one of the best build ups).
+
+People have tried CNN as encoder and transformer(either the whole thing or only the decoder layers). It is much more complex(atleast now for me) than this CNN + LSTM.  The model size also increases but it gives better results (and less training time since Transformer operations are parallelized unlike BPTT in RNNs)
+
+![transformer.png.png](imgs/transformer.png.png)
 
 
 
