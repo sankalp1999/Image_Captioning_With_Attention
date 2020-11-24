@@ -6,7 +6,7 @@
 
 The [Caption Bot](https://share.streamlit.io/sankalp1999/image_captioning/main) takes your images and generates a caption in less than 40 words (even though a picture is worth a thousand words.....)
 
-Update: The app might be down due to exceeding resource limit. I am making changes to avoid that. 
+Update: The app might be down due to exceeding resource limits. I am making changes to avoid that. 
 
 ---
 
@@ -145,7 +145,7 @@ The model works on sequence-to-sequence learning (Seq2Seq). This was introduced 
 
 So in simple words, the encoder's task is to identify the features of the input (text in NMT or image in Image Captioning). These representations are provided to the "Decoder" to decode some outputs. 
 
-The encoder for example take CNN continuously downsamples (convolution and max pooling continously take max of the pixels. This retains only the most important information). Then we can pass the (embedding of the words + features NMT), (embedding + CNN features IC)  upsample it once and provide it to the decoder. 
+The encoder for example take CNN continuously downsamples (convolution and max pooling continously take max of the pixels. This retains only the most important information). Then we can pass the (embedding of the words + features in  Neural Machine Translation), (embedding + CNN features Image Captioning)  and provide it to the decoder. (Attention related details have been discussed later)
 
 Finally, we can decode the output by continuously passing the word predicted (Each word is dependent on the previously predicted words —> Conditional language modelling since we use conditional probability).  This is called greedy decoding.
 
