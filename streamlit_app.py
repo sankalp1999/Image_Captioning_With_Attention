@@ -165,7 +165,13 @@ def load_model():
 
     optimizer = optim.Adam(decoder.parameters(), lr = learning_rate)
     
-    step = load_checkpoint(torch.load(decoder_path ,map_location = 'cpu'), decoder, optimizer)
+    checkpoint = torch.load(decoder_path,map_location='cpu')
+    decoder.load_state_dict(checkpoint["state_dict"])
+    optimizer.load_state_dict(checkpoint["optimizer"])
+    step = checkpoint["step"]
+
+    # return step
+    #   step = load_checkpoint(torch.load(decoder_path ,map_location = 'cpu'), decoder, optimizer)
 
     decoder = decoder.to(device)
     decoder.eval()
