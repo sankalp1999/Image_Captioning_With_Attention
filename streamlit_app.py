@@ -24,7 +24,7 @@ st.set_page_config(
 )
 
 
-def transform_image(img_bytes):
+def transform_image(image):
     mean = [0.485, 0.456, 0.406]
 
     std = [0.229, 0.224, 0.225]
@@ -34,7 +34,7 @@ def transform_image(img_bytes):
         transforms.ToTensor(),
         transforms.Normalize(mean, std)]
     )
-    image = Image.open(io.BytesIO(img_bytes) ).convert("RGB")
+#     image = Image.open(io.BytesIO(img_bytes) ).convert("RGB")
     return transform(image)
 
 def load_checkpoint(checkpoint, model, optimizer):
@@ -43,7 +43,6 @@ def load_checkpoint(checkpoint, model, optimizer):
     optimizer.load_state_dict(checkpoint["optimizer"])
     step = checkpoint["step"]
     return step
-
 
 class EncoderCNN(nn.Module):
    
