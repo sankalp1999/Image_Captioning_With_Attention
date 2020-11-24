@@ -83,7 +83,6 @@ class EncoderCNN(nn.Module):
         if not train_CNN:
             for param in self.resnet.parameters():
                 param.requires_grad = False
-           
         
     def forward(self, images):
          
@@ -173,9 +172,6 @@ def load_model():
     
     return vocab, encoder, decoder
 
-# image_path = 'flickr8k/Images/54501196_a9ac9d66f2.jpg'
-# avoid loading again and again
-
 def predict_caption(image_bytes):
     
     captions = []
@@ -203,7 +199,6 @@ def pypng():
     image = Image.open('data/pytorch.png')
     return image
     
-
 if __name__ == '__main__':
 
     download_data()
@@ -220,7 +215,7 @@ if __name__ == '__main__':
 
     st.info("If nothing happens after 10 seconds of uploading, reload the page and select again.")
     
-    args = { 'sunset' : 'imgs/dogred.jpeg' }
+    args = { 'sunset' : 'imgs/sunset.jpeg' }
     
     img_upload  = st.file_uploader(label= 'Upload Image', type = ['png', 'jpg', 'jpeg'])
     
