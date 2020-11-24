@@ -188,9 +188,13 @@ def predict_caption(image_bytes):
 
 @st.cache(ttl=3600, max_entries=10)
 def load_output_image(img):
- 
-    # img_bytes = img.read() --> should fix 'str' object has no attribute 'read'
-    image = Image.open(io.BytesIO(img_bytes) ).convert("RGB")
+    
+    if isinstance(img, str): 
+        image = Image.open(img)
+    else:
+        img_bytes = img.read() 
+        image = Image.open(io.BytesIO(img_bytes) ).convert("RGB")
+    
     # Auto - orient refer https://stackoverflow.com/a/58116860
     image = ImageOps.exif_transpose(image) 
     return image
