@@ -231,17 +231,22 @@ if __name__ == '__main__':
     image = load_output_image(img_open)
     
     st.sidebar.title("Tips")
-    st.sidebar.text("If you are getting funny predictions \n")
-    st.sidebar.text("1. Prefer using the app from PC.")
-    st.sidebar.text("2. Try putting images which are less \n complex.")
-    st.sidebar.text("3. CaptionBot likes dogs and people  \n more!")
-    st.sidebar.text("4. Profile pictures(Whatsapp) are \n good candidates!")
+    st.sidebar.markdown(''' If you are getting funny predictions \n
+    1. Prefer using the app from PC
+    2. Upload less complex images.
+    3. CaptionBot likes dogs, men, women and kids.
+    4. Profile pictures(Whatsapp) are \n good candidates!
+    ''')
+#     st.sidebar.text("If you are getting funny predictions \n")
+#     st.sidebar.text("1. Prefer using the app from PC.")
+#     st.sidebar.text("2. Try putting images which are less \n complex.")
+#     st.sidebar.text("3. CaptionBot likes dogs and people  \n more!")
+#     st.sidebar.text("4. Profile pictures(Whatsapp) are \n good candidates!")
     
     st.sidebar.markdown('''Check the source code [here](https://github.com/sankalp1999/Image_Captioning)
+    \n Liked it? Give a :star:  on GitHub ''')
     
-    Liked it? Give a :star:  ''')
-    
-    st.image(image,width=500,caption="Your image")
+    st.image(image,use_column_width=True,caption="Your image")
 
     # img_bytes earlier
     if st.button('Generate captions!'):
