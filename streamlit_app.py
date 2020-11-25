@@ -245,7 +245,7 @@ if __name__ == '__main__':
     3. CaptionBot likes dogs :dog: , men, women and kids.
     4. Profile pictures(Whatsapp) are \n good candidates!
     
-    *Fun fact*
+    **Try this**
  
     If more than two captions say
     you are woman, then you are more
