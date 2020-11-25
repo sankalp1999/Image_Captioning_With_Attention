@@ -247,7 +247,7 @@ if __name__ == '__main__':
     
     **Try this** :wink:
 
-    If more than two captions say
+    If >= 2 captions say
     you are woman, then you are more
     feminine looking and vice-versa.
     Upload a close-up to see! 
