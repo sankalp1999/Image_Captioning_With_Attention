@@ -245,8 +245,11 @@ if __name__ == '__main__':
     3. CaptionBot likes dogs, men, women and kids.
     4. Profile pictures(Whatsapp) are \n good candidates!
     
-    Fun fact 
-    >! If more than 2 caption 
+    Fun fact - Upload your close-up
+ 
+    If more than two captions say
+    you are woman, then you are more
+    feminine looking and vice-versa.
     
     ''')
     
@@ -260,7 +263,4 @@ if __name__ == '__main__':
         predict_caption(image)
         st.success("Click again to retry or try a different image by uploading")
         st.balloons()
-        st.markdown('''>! *PALPATINE*: Good, Anakin, good. I knew you could do it. Kill him. Kill him now!  
->! *ANAKIN*: I shouldn't . . .  
->! *PALPATINE*: Do it!!  
->! Anakin cuts off Count Dooku's head.''')
+ 
