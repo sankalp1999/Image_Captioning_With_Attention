@@ -260,3 +260,7 @@ if __name__ == '__main__':
         predict_caption(image)
         st.success("Click again to retry or try a different image by uploading")
         st.balloons()
+        st.markdown('''>! *PALPATINE*: Good, Anakin, good. I knew you could do it. Kill him. Kill him now!  
+>! *ANAKIN*: I shouldn't . . .  
+>! *PALPATINE*: Do it!!  
+>! Anakin cuts off Count Dooku's head.''')
