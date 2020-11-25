@@ -239,6 +239,13 @@ if __name__ == '__main__':
 #     st.sidebar.title("Tips")
     st.sidebar.markdown('''
     # Pro Tips
+    <details>
+      <summary>Example</summary>
+
+      ```
+      long console output here
+      ```
+    </details>
     If you are getting funny predictions \n
     1. Prefer using the app from PC
     2. Upload less complex images.
