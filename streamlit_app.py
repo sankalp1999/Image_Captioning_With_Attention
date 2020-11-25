@@ -237,7 +237,9 @@ if __name__ == '__main__':
     image = load_output_image(img_open)
     
     st.sidebar.title("Tips")
-    st.sidebar.markdown(''' If you are getting funny predictions \n
+    st.sidebar.markdown('''
+    # Pro Tips
+    If you are getting funny predictions \n
     1. Prefer using the app from PC
     2. Upload less complex images.
     3. CaptionBot likes dogs, men, women and kids.
