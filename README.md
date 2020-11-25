@@ -53,7 +53,7 @@ Only the decoder is trained.
 
 ```python
 git clone https://github.com/sankalp1999/Image_Captioning.git
-cd sankalp1999/Image_Captioning.git
+cd Image_Captioning
 ```
 
 2. Make a new virtual environment (Optional)
