@@ -182,14 +182,15 @@ def predict_caption(image_bytes):
     
     captions = []
     img_t = transform_image(image_bytes)
-    for i in range(3,7):
-        encoded_output = encoder(img_t.unsqueeze(0).to(device))
-        caps = decoder.beam_search(encoded_output,i)
-        caps = caps[1:-1]
-        caption = [vocab.itos[idx] for idx in caps]
-        caption = ' '.join(caption)
-        print(caption)
-        captions.append(caption)
+    with torch.no_grad():
+        for i in range(3,7):
+            encoded_output = encoder(img_t.unsqueeze(0).to(device))
+            caps = decoder.beam_search(encoded_output,i)
+            caps = caps[1:-1]
+            caption = [vocab.itos[idx] for idx in caps]
+            caption = ' '.join(caption)
+            print(caption)
+            captions.append(caption)
     for i in range(len(captions)):
         s = ("** Prediction " + str(i + 1) + ": " + captions[i] + "**")
         st.markdown(s)        
