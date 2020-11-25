@@ -236,7 +236,7 @@ if __name__ == '__main__':
     
     image = load_output_image(img_open)
     
-    st.sidebar.title("Tips")
+#     st.sidebar.title("Tips")
     st.sidebar.markdown('''
     # Pro Tips
     If you are getting funny predictions \n
