@@ -242,14 +242,15 @@ if __name__ == '__main__':
     If you are getting funny predictions \n
     1. Prefer using the app from PC
     2. Upload less complex images.
-    3. CaptionBot likes dogs, men, women and kids.
+    3. CaptionBot likes dogs :dog: , men, women and kids.
     4. Profile pictures(Whatsapp) are \n good candidates!
     
-    Fun fact - Upload your close-up
+    *Fun fact*
  
     If more than two captions say
     you are woman, then you are more
     feminine looking and vice-versa.
+    Upload a close-up to see! :wink:
     
     ''')
     
