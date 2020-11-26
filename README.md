@@ -181,7 +181,7 @@ But for (free) deployment purposes, size constraints.
 
 > Resnet 101 weights are around 170 MB while resnet-50 are around 98 MB. Heroku gives around ~ 500 MB while Streamlit ~800 MB storage.
 
-I use a pre-trained Resnet 50 model (without fine-tuning). Resnet-50 is trained on ImageNet which contains a lot of dogs (which explains the model's liking for dogs.)
+I use a pre-trained Resnet 50 model (without fine-tuning). Resnet-50 is trained on ImageNet which contains a lot of dogs (which explains the model's liking for dogs.) This saves a lot of effort because it has already been trained on millions of images.
 
 We remove the last three layers( as more spatial information can be found in the lower layers).  And take the feature representation. Then, reshaping and permuting is needed for operations in the decoder. The paper mentions to bring the shape to (batch_size, num_pixel = 14 x 14 , encoder_dim = 1024)
 
@@ -191,7 +191,7 @@ Check in the pytorch_model/model.py .
 
 ### Embedding layer
 
-The embeddings are trained on the vocabulary of Flickr8K. I decided to not use pretrained-embeddings because of size-constraints and secondly it has been found that training on your dataset's vocabulary is sometimes equally accurate (because of context of the images and captions). 
+The embeddings are trained on the vocabulary of Flickr8K. I decided to not use pretrained-embeddings because of size-constraints and secondly it has been found that training on your dataset's vocabulary is sometimes equally accurate (because of context of the images and captions). So, embedding training is done with the decoder.
 
 The vocabulary threshold is 2 (although the initial models I had trained had a vocabulary threshold of 5). The threshold means the number of occurences of the word to include it in my vocabulary which is a mapping of words to indices and vice-versa. 
 
@@ -200,8 +200,9 @@ With threshold = 2, vocab size is 5011. I saw a decrease in BLEU score but bette
 With threshold = 5, vocab size was 2873.
 
 ### Decoder
+The main training part of the project was training the decoder with soft attention mechanism (and the embedding ).
 
-We use an nn.LSTMCell and not nn.LSTM. It's easier to get the hidden steps at each time step from LSTMCell. I won't put a picture here of LSTMCell equations because they scare me.
+We use an nn.LSTMCell for our Decoder and not nn.LSTM. It's easier to get the hidden steps at each time step from LSTMCell. I won't put a picture here of LSTMCell equations because they scare me.
 
 ### Attention network (soft attention)
 
@@ -225,7 +226,7 @@ We pass this context vector with the embedding to the decoder. Then, we get the 
 
 For better visualization, refer [this](https://youtu.be/StOFwSRBwMo) video.
 
-The BahdanauAttention class in the [model.py](http://model.py) file is implementing the attention network which calculates the attention weights(alphas) and context vector.
+The soft attention is differentiable and hence can be trained using backpropgation. It is a small neural network model of it's own. The BahdanauAttention class in the [model.py](http://model.py) file is implementing the attention network which calculates the attention weights(alphas) and context vector. 
 
 ![attention_maths.png](imgs/attention_maths.png)
 
