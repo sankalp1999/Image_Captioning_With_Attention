@@ -180,6 +180,9 @@ for epoch in range(0, num_epochs):
 
                 show_image(imgs[0],title=' '.join(caps))
             decoder.train()
+            encoder.train() # Messed up while copying from kaggle kernel
+                            # We are not training the encoder but eval switches off 
+                            # Batch norm and dropout
         
         # Valid loss without another dataloader. I created a manual split of images and captions
         if (idx + 1 ) % 200 == 0 :
@@ -218,18 +221,20 @@ for epoch in range(0, num_epochs):
                     valid_losses.append(valid_loss.item())
 
                     print("Step", index, valid_loss.item())
+                    
             decoder.train()
-
+            encoder.train()
             print("-" * 80)
+            
             mean_valid_loss = sum(valid_losses)/len(valid_losses)
+            
             mvl.append(mean_valid_loss)
             print(mean_valid_loss)        
+            
             print("-" * 80)                        
     
     mean_loss = sum(losses)/len(losses)
-    print("-" * 80)
     print("Mean loss", mean_loss)
     print(mvl)
-    print("-" * 80)
 
 
