@@ -96,6 +96,10 @@ class FlickrDataset(Dataset):
 
         if self.transform is not None:
             img = self.transform(img)
+        
+        # Fixed BLEU score evaluation
+        caption = self.vocab.tokenizer_eng(caption)
+        
         return img, caption
 # Caption lengths will be different, in our batch all have to be same length
 
