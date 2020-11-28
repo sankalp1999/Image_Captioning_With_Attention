@@ -7,9 +7,6 @@
 The [Caption Bot](https://share.streamlit.io/sankalp1999/image_captioning/main) takes your images and generates a caption in less than 40 words (even though a picture is worth a thousand words.....)
 
 The app might be down due to exceeding resource limits.(Low chance now since I have made changes)
-TODO:
-[-] Update the Results section. Fixed the evaluation function. Attained BLEU scores over Bleu1- 57 Bleu4 over 25.
-
 
 ---
 
@@ -32,6 +29,9 @@ Contents of README
 - [Results](https://github.com/sankalp1999/Image_Captioning#results)
 - [References](https://github.com/sankalp1999/Image_Captioning#references-and-acknowledgement)
 
+TODO:
+- [ ] Update the Results section. Fixed the evaluation function. Attained BLEU scores over Bleu1- 57 Bleu4 over 25.
+- [ ] Add the link for the latest model (Trained 2 more epochs on deep output layer
 
 ---
 
