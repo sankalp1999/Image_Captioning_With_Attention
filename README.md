@@ -259,28 +259,22 @@ The predictions in the CaptionBot are with beam indices 2..5
 
 ![bleu.jpg](imgs/bleu.jpg)
 
-**Request** - If you are able to find some issue with the model which could have led to low BLEU scores, please inform.
 
-The model is giving pretty accurate predictions for most of the items in the dataset and outside also. But the BLEU score is low. This is probably something missing in the model because the authors attained a higher score on the paper.
+I calculated the BLEU score over 580 images with 5 captions each. 
+This score was attained near 14th epoch. (I trained the deployed model from 10th epoch with fixed BLEU evaluator. BLEU requires tokenized text.)
 
-I calculated the BLEU score over 200 images with 5 captions each and sometimes only 100 images. The scores revolve around. Check ou  the jupyter notebook for these along with captions on images.
-
-```
+--------------------------------------------------------------------------------
 Torch metrics
-BLEU-1 0.35120707074989127
-BLEU-2 0.1789211035330783
-BLEU-3 0.1054519902420567
-BLEU-4 0.06222680791229005
-```
-
-The max result the model could achieve once was (this was less than 50 images). 
-
-```
-BLEU-1 0.4838709533214569
-BLEU-2 0.3417549431324005
-BLEU-3 0.28220313787460327
-BLEU-4 0.22571180760860443
-```
+BLEU-1 0.5501674303661013
+BLEU-2 0.36758254674171975
+BLEU-3 0.23614966903696785
+BLEU-4 0.15057578196212448
+--------------------------------------------------------------------------------
+Nltk metrics
+BLEU-1 0.5507556098305603
+BLEU-2 0.3679755447662469
+BLEU-3 0.2398363066382649
+BLEU-4 0.15073676989354545
 
 ---
 
