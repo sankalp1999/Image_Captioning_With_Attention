@@ -29,10 +29,6 @@ Contents of README
 - [Results](https://github.com/sankalp1999/Image_Captioning#results)
 - [References](https://github.com/sankalp1999/Image_Captioning#references-and-acknowledgement)
 
-TODO:
-- [ ] Update the Results section. Fixed the evaluation function. Attained BLEU scores over Bleu1- 57 Bleu4 over 25.
-- [ ] Add the link for the latest model (Trained 2 more epochs on deep output layer
-
 ---
 
 ## Repository structure 
