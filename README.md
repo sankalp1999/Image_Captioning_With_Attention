@@ -6,7 +6,7 @@
 
 The [Caption Bot](https://share.streamlit.io/sankalp1999/image_captioning_with_attention/main) takes your images and generates a caption in less than 40 words (even though a picture is worth a thousand words.....)
 
-The app might be down due to exceeding resource limits.(Low chance now since I have made changes)
+
 
 ---
 
@@ -16,6 +16,9 @@ The app might be down due to exceeding resource limits.(Low chance now since I h
 Check out yourself [here](https://share.streamlit.io/sankalp1999/image_captioning_with_attention/main).
 [Note](https://discuss.streamlit.io/t/get-path-from-file-uploader/3771/8): The uploaded images are not stored (since they are fetched as memory object, read in bytes and displayed)
 
+### What's new?
+V2 is a better model with lesser weird predictions. It is trained on Flickr30K dataset and some minor mistakes which were there in version 1 have been resolved.
+For code related changes, see Flickr30Change folder.
 
 You can check some of the results [below](https://github.com/sankalp1999/Image_Captioning/blob/main/README.md#the-good).
 
@@ -201,6 +204,10 @@ The vocabulary threshold is 2 (although the initial models I had trained had a v
 With threshold = 2, vocab size is 5011. I saw a decrease in BLEU score but better captions.
 
 With threshold = 5, vocab size was 2873.
+
+Flickr30K
+
+With threshold = 5, vocab size is 7547.
 
 ### Decoder
 The main training part of the project was training the decoder with soft attention mechanism (and the embedding ).
