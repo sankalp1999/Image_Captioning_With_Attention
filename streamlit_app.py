@@ -226,7 +226,6 @@ if __name__ == '__main__':
     st.success("Welcome! Please upload an image!"
     )   
 
-    st.info("If nothing happens after 10 seconds of uploading, reload the page and select again.")
     
     args = { 'sunset' : 'imgs/sunset.jpeg' }
     
