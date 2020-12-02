@@ -10,7 +10,8 @@ The app might be down due to exceeding resource limits.(Low chance now since I h
 
 ---
 
-## Try the CaptionBot yourself!
+## Try the CaptionBotv2 yourself!
+
 
 Check out yourself [here](https://share.streamlit.io/sankalp1999/image_captioning/main).
 [Note](https://discuss.streamlit.io/t/get-path-from-file-uploader/3771/8): The uploaded images are not stored (since they are fetched as memory object, read in bytes and displayed)
