@@ -239,10 +239,10 @@ The soft attention is differentiable and hence can be trained using backpropgati
 ![attention_maths.png](imgs/attention_maths.png)
 
 ### Doubly stochastic attention
-The authors introduce doubly stochastic attention which involves using a sigmoid gate "beta" learning parameter to encourage 
+The authors introduce doubly stochastic attention which involves using a sigmoid gate over a "beta" learning parameter(essenetially a FC layer) to encourage 
 (alpha * attention_weights).sum() to be near 1. 
 
-We pass the context vector through a gate(essentially, a fully connected layer). They also introduce a term to add in to the overall loss. This helps the model to identify more objects. 
+They also introduce a term to add in to the overall loss.
 
 ![double.png](imgs/double.png)
 
