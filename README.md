@@ -8,7 +8,7 @@ The [Caption Bot](https://share.streamlit.io/sankalp1999/image_captioning_with_a
 
 ---
 
-## Try the CaptionBotv2 yourself!
+## Try the CaptionBot V2.0 yourself!
 
 
 Check out yourself [here](https://share.streamlit.io/sankalp1999/image_captioning_with_attention/main) on Streamlit Sharing.
