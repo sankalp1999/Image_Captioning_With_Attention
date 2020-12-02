@@ -40,11 +40,15 @@ The repository is divided into the following structure into three parts
 2. Flask_App - this is inside main/pytorch_model. This was meant to deployed using flask. The requirements.txt here is specifically for deployment using Flask.
 3. Main branch -  Deployment using streamlit. Files required for streamlit deployment are here.
 
+Flickr8K weights
 You can download the weights from [Decoder_weights](https://www.dropbox.com/s/5ntq1bgp33k1197/LastModelResnet50_v2_16.pth.tar?dl=0) and [Encoder_Weights](https://www.dropbox.com/s/fot9zzgszkpsab7/resnet50_captioning.pt?dl=0).
 
-Note: You can directly use resnet50(pretrained = True) because I did not fine-tune the resnet50.
-Only the decoder is trained.
+In version 1(flickr8k), the batchnorm layer parameters(in the Resnet-50) were skewed so results were also slightly worse and random. While training a fixed feature extractor,make sure you save the weights because the batchnorm layers still track the stats even if torch.grad = False for all parameters.
 
+Flickr30K weights
+
+[Decoder weights](https://www.dropbox.com/s/cf2ox65vi7c2fou/Flickr30k_Decoder_10.pth.tar?dl=0)
+[Encoder weights](https://www.dropbox.com/s/v0ikcdbh8w2rqii/resnet5010.pt?dl=0)
 
 --- 
 
