@@ -20,7 +20,7 @@ device = 'cpu'
 
 st.set_page_config(
     initial_sidebar_state="expanded",
-    page_title="CaptionBot"
+    page_title="CaptionBot 2.0"
 )
 
 
