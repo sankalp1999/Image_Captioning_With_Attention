@@ -44,64 +44,6 @@ def load_checkpoint(checkpoint, model, optimizer):
     step = checkpoint["step"]
     return step
 
-class EncoderCNN(nn.Module):
-   
-    '''
-    Takes in the image, encode it in shape (L,D) and return to decoder
-        
-     "The extractor produces L vectors, each of which is
-    a D-dimensional representation corresponding to a part of
-     the image"
-        
-    '''
-#     @st.cache(ttl=3600,max_entries=10) solved internal hash error
-    def __init__(self, encoded_size=14, train_CNN = False):
-        
-        super(EncoderCNN, self).__init__()
-        
-        # Fine-tune parameter
-        self.train_CNN = train_CNN
-        
-        self.encoded_size =encoded_size
-        
-        # Load the resnet, but pretrained = False if you want to just load the weights
-        self.resnet50 = models.resnet50(pretrained=False)
-        # Remove adaptive pool and FC from the end. 
-        # Other working implementations leave only three but more features can be found
-        # in the second last/third last layer
-        layers_to_use = list(self.resnet50.children())[:-3]
-        
-        # Unpack and make it the conv_net
-        self.resnet = nn.Sequential(*layers_to_use)
-        
-        self.adaptive_pool = nn.AdaptiveAvgPool2d((encoded_size, encoded_size))
-        
-        self.relu = nn.ReLU()
-        
-        self.dropout = nn.Dropout(0.5)
-        
-        if not train_CNN:
-            for param in self.resnet.parameters():
-                param.requires_grad = False
-        
-    def forward(self, images):
-         
-        # images.shape (batch_size, 3, image_size, image_size)    
-            
-        batch_size = images.shape[0]
-        
-        with torch.no_grad():
-            features = self.resnet(images)              
-        features = self.adaptive_pool(features) 
-        features = features.permute(0, 2, 3, 1) 
-        
-        # The above transformation is needed because we are going to do some computation in the 
-        # decoder.
-        encoder_dim = features.shape[-1]
-        # When in doubt https://stackoverflow.com/questions/42479902/how-does-the-view-method-work-in-pytorch
-        features = features.view(batch_size, -1, encoder_dim)  # (batch_size, L, D)
-
-        return features
 
 @st.cache
 def download_data():
