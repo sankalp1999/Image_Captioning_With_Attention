@@ -4,7 +4,7 @@
 
 
 
-The [Caption Bot](https://share.streamlit.io/sankalp1999/image_captioning/main) takes your images and generates a caption in less than 40 words (even though a picture is worth a thousand words.....)
+The [Caption Bot](https://share.streamlit.io/sankalp1999/image_captioning_with_attention/main) takes your images and generates a caption in less than 40 words (even though a picture is worth a thousand words.....)
 
 The app might be down due to exceeding resource limits.(Low chance now since I have made changes)
 
@@ -161,9 +161,12 @@ For more details of the concepts, refer [CS224N, Lecture 8](https://youtu.be/XXt
 
 Based on the paper - Show, Attend and Tell
 
-### Dataset
+### Datasets used
 
-Flickr8K- It is a relatively small dataset of 8000 images with 5 captions each. There are two versions found on the web - one with splits and one without splits. I used the latter and created manual split. 
+Flickr8K- It is a relatively small dataset of 8000 images with 5 captions each. There are two versions found on the web - one with splits and one without splits. I used the latter and created manual split.  
+
+Flickr30K (in version 2) - 31000 images with 5 captions each. Better train on this after training on flickr8k because one epoch takes much longer.
+
 
 ### Seq2Seq model
 
@@ -230,6 +233,15 @@ The soft attention is differentiable and hence can be trained using backpropgati
 
 ![attention_maths.png](imgs/attention_maths.png)
 
+### Doubly stochastic attention
+The authors introduce doubly stochastic attention which involves using a sigmoid gate "beta" learning parameter to encourage 
+(alpha * attention_weights).sum() to be near 1. 
+
+We pass the context vector through a gate(essentially, a fully connected layer). They also introduce a term to add in to the overall loss. This helps the model to identify more objects. 
+
+![double.png](imgs/double.png)
+
+
 ### Greedy decoding
 
 Selects the best prediction and passes the embedding of this prediction along with the context vector. This often works but then you want to be sure that your current choice is optimal, then only your caption will be optimal since the future words are dependent on previous words.
@@ -260,18 +272,23 @@ The predictions in the CaptionBot are with beam indices 2..5
 I calculated the BLEU score over 580 images with 5 captions each. 
 This score was attained near 14th epoch. (I trained the deployed model from 10th epoch with fixed BLEU evaluator. BLEU requires tokenized text.)
 
---------------------------------------------------------------------------------
-Torch metrics
-BLEU-1 0.5501674303661013
-BLEU-2 0.36758254674171975
-BLEU-3 0.23614966903696785
-BLEU-4 0.15057578196212448
---------------------------------------------------------------------------------
-Nltk metrics
-BLEU-1 0.5507556098305603
-BLEU-2 0.3679755447662469
-BLEU-3 0.2398363066382649
-BLEU-4 0.15073676989354545
+
+### Flickr8K model 
+
+| Torch metric | Score   |
+|--------------|---------|
+| BLEU-1       |  0.5501 |
+| BLEU-2       |  0.3675 |
+| BLEU-3       |  0.2361 |
+| BLEU-4       |  0.1505 |
+
+### Flickr30K model
+| Torch metric | Score   |
+|--------------|---------|
+| BLEU-1       |  0.5920 |
+| BLEU-2       |  0.4084 |
+| BLEU-3       |  0.2804 |
+| BLEU-4       |  0.1956 |
 
 ---
 
