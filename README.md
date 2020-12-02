@@ -6,14 +6,12 @@
 
 The [Caption Bot](https://share.streamlit.io/sankalp1999/image_captioning_with_attention/main) takes your images and generates a caption in less than 40 words (even though a picture is worth a thousand words.....)
 
-
-
 ---
 
 ## Try the CaptionBotv2 yourself!
 
 
-Check out yourself [here](https://share.streamlit.io/sankalp1999/image_captioning_with_attention/main).
+Check out yourself [here](https://share.streamlit.io/sankalp1999/image_captioning_with_attention/main) on Streamlit Sharing.
 [Note](https://discuss.streamlit.io/t/get-path-from-file-uploader/3771/8): The uploaded images are not stored (since they are fetched as memory object, read in bytes and displayed)
 
 ### What's new?
