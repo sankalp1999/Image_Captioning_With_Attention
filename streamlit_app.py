@@ -106,8 +106,8 @@ class EncoderCNN(nn.Module):
 @st.cache
 def download_data():
     
-    path1 = './LastModelResnet50_v2_16.pth.tar'
-    path2 = './resnet50_captioning.pt'
+    path1 = './Flickr30k_Decoder_10.pth.tar'
+    path2 = './resnet5010.pt'
     
     # Local
     # path1 = './data/LastModelResnet50_v2_16.pth.tar'
@@ -115,7 +115,7 @@ def download_data():
     # print("I am here.")
     
     if not os.path.exists(path1):
-        decoder_url = 'wget -O ./LastModelResnet50_v2_16.pth.tar https://www.dropbox.com/s/5ntq1bgp33k1197/LastModelResnet50_v2_16.pth.tar?dl=0'
+        decoder_url = 'wget -O ./Flickr30k_Decoder_10.pth.tar https://www.dropbox.com/s/cf2ox65vi7c2fou/Flickr30k_Decoder_10.pth.tar?dl=0'
         
         with st.spinner('done!\nmodel weights were not found, downloading them...'):
             os.system(decoder_url)
@@ -123,7 +123,7 @@ def download_data():
         print("Model 1 is here.")
 
     if not os.path.exists(path2):
-        encoder_url = 'wget -O ./resnet50_captioning.pt https://www.dropbox.com/s/fot9zzgszkpsab7/resnet50_captioning.pt?dl=0'
+        encoder_url = 'wget -O ./resnet5010.pt https://www.dropbox.com/s/v0ikcdbh8w2rqii/resnet5010.pt?dl=0'
         with st.spinner('Downloading model weights for resnet50'):
             os.system(encoder_url)
     else:
@@ -133,23 +133,23 @@ def download_data():
 def load_model():
     
     # global vocab
-    vocab = Vocab_Builder(freq_threshold = 2)
+    vocab = Vocab_Builder(freq_threshold = 5)
 
     # Load the pickle dump
-    vocab_path = './vocab.pickle'
+    vocab_path = './vocab (1).pickle'
 
     with open(vocab_path, 'rb') as f:
         vocab = pickle.load(f)
 
     print(len(vocab))
-    embed_size = 256
+    embed_size = 350
     encoder_dim = 1024
-    decoder_dim = 400
-    attention_dim = 400
+    decoder_dim = 512
+    attention_dim = 512
     vocab_size = len(vocab)
-    learning_rate = 2e-4 
-    resnet_path = './resnet50_captioning.pt'
-    
+    learning_rate = 4e-4 
+    # resnet_path = './resnet50_captioning.pt'
+    resnet_path = './resnet5010.pt'
     # global encoder
     encoder = EncoderCNN()
 
@@ -158,8 +158,8 @@ def load_model():
     encoder.to(device)
     encoder.eval() # V. important to switch off Dropout and BatchNorm
 
-    decoder_path = './LastModelResnet50_v2_16.pth.tar'
-
+    # decoder_path = './LastModelResnet50_v2_16.pth.tar'
+    decoder_path = './Flickr30k_Decoder_10.pth.tar'
     # global decoder
     decoder = Decoder(encoder_dim, decoder_dim, embed_size, vocab_size, attention_dim, device)    
 
@@ -182,15 +182,14 @@ def predict_caption(image_bytes):
     
     captions = []
     img_t = transform_image(image_bytes)
-    with torch.no_grad():
-        for i in range(3,7):
-            encoded_output = encoder(img_t.unsqueeze(0).to(device))
-            caps = decoder.beam_search(encoded_output,i)
-            caps = caps[1:-1]
-            caption = [vocab.itos[idx] for idx in caps]
-            caption = ' '.join(caption)
-            print(caption)
-            captions.append(caption)
+    for i in range(2,6):
+        encoded_output = encoder(img_t.unsqueeze(0).to(device))
+        caps = decoder.beam_search(encoded_output,i)
+        caps = caps[1:-1]
+        caption = [vocab.itos[idx] for idx in caps]
+        caption = ' '.join(caption)
+        print(caption)
+        captions.append(caption)
     for i in range(len(captions)):
         s = ("** Prediction " + str(i + 1) + ": " + captions[i] + "**")
         st.markdown(s)        

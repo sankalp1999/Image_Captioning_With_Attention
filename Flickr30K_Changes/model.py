@@ -3,80 +3,6 @@ import torch.nn as nn
 import torchvision.models as models
 import torch.nn.functional as F
 
-
-device = 'cpu'
-
-class BahdanauAttention(nn.Module):
-    
-    '''
-    Soft attention which is deterministic in nature. First introducted in 
-    the paper Neural Machine Translation by Jointly Learning to Align and Translate (Bahdanau Et Al)
-    '''
-    
-    def __init__(self, encoder_dim, decoder_dim, attention_dim):
-        
-        # Get the L attention dimension vector using this. Pass through softmax to get the 
-        # score
-        super(BahdanauAttention, self).__init__()
-        
-        self.attention = nn.Linear(attention_dim, 1)
-
-        self.softmax = nn.Softmax(dim=1)
-        
-        self.relu = nn.ReLU()
-        
-        self.encoder_to_attention_dim = nn.Linear(encoder_dim, attention_dim)
-        
-        self.decoder_to_attention_dim = nn.Linear(decoder_dim, attention_dim)
-        
-        self.dropout = nn.Dropout(0.5)
-        
-        self.tanh = nn.Tanh()
-        
-    def forward(self, encoder_output, hidden_states):
-        
-        '''
-        encoder_output : shape (batch_size, L, D)
-        decoder_output : shape (batch_size, hidden_state dimension) 
-        
-        '''
-      
-        
-        encoder_attention = self.encoder_to_attention_dim(encoder_output) # (batch_size, L, attention_dim)
-        
-        decoder_attention = self.decoder_to_attention_dim(hidden_states) # (batch_size, attention_dim)
-        
-        # Torch.cat() ?? 
-        # >>> a = torch.cat((encoder,decoder.unsqueeze(1)),dim=1)
-        # No, its actually adds the dim = 1 (Adds one more item in dim = 1)
-        # We just want to add.
-        
-        
-        #   (batch_size, L, attention_dim) + (batch_size, 1, attention_dim) 
-        encoder_decoder = encoder_attention + decoder_attention.unsqueeze(1)  # (batch_size, L, attention_dim)
-        
-        encoder_decoder = self.tanh(encoder_decoder)
-        
-        attention_full = (self.attention(encoder_decoder)).squeeze(2) # (batch_size, L)
-        
-        alpha = self.softmax(attention_full) # Take the softmax across L(acc to paper)
-        
-        
-        '''
-        Equation 13 in the paper - classic Bahdanau attention
-        '''
-        
-        z = (encoder_output * alpha.unsqueeze(2) ).sum(dim = 1) # Sum across L (pixels)
-        
-        return z, alpha
-        
-        
-
-
-
-# Major changes include the ignoring of the last two layers. Author use a lower layer for more dense features.
-
-
 class EncoderCNN(nn.Module):
    
     '''Takes in the image, encode it in shape (L,D) and return to decoder
@@ -319,8 +245,6 @@ class Decoder(nn.Module):
     
     def predict_caption(self, encoder_output, captions):
         
-        
-        print("Inside ")
         # "<SOS>" 1
         caption_list = [1]
         alphas = [] 
@@ -333,7 +257,7 @@ class Decoder(nn.Module):
             
             embedded_caption = self.embed(  torch.LongTensor([word]).to(device)  )  # (1, embed_dim)
             
-            context_vector, alpha = self.attention(encoder_output, h)
+            context_vector, alpha = self.attention(encoder_output, h);
             
             gate = self.sigmoid(self.f_beta(h))
             
@@ -356,8 +280,7 @@ class Decoder(nn.Module):
         return caption_list, alphas
       
     def beam_search(self, encoder_output, beam_size = 3):
-        print("Inside beam", beam_size)
-
+        
         k = beam_size
         
         vocab_size = self.vocab_size
