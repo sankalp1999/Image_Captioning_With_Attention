@@ -204,4 +204,3 @@ if __name__ == '__main__':
         st.success("Click again to retry or try a different image by uploading")
         st.balloons()
         
-        st.markdown('''\n\n                 Check model details here ''')
