@@ -167,7 +167,6 @@ if __name__ == '__main__':
     st.text("")
     st.success("Welcome! Please upload an image!"
     )   
-
     
     args = { 'sunset' : 'imgs/sunset.jpeg' }
     
@@ -177,7 +176,6 @@ if __name__ == '__main__':
     
     image = load_output_image(img_open)
     
-#     st.sidebar.title("Tips")
     st.sidebar.markdown('''
     # Pro Tips
     If you are getting funny predictions \n
@@ -205,7 +203,5 @@ if __name__ == '__main__':
         predict_caption(image)
         st.success("Click again to retry or try a different image by uploading")
         st.balloons()
-        st.markdown('''
-                    \n
-                    For more details, check [Github](https://github.com/sankalp1999/Image_Captioning_With_Attention)
-                   ''')
+        
+        st.markdown('''\n\n                 Check model details here ''')
