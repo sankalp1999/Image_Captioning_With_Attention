@@ -89,7 +89,7 @@ def load_model():
     decoder_dim = 512
     attention_dim = 512
     vocab_size = len(vocab)
-    learning_rate = 4e-4 
+    learning_rate = 4e-5 # Modifed it after 10th epoch
     # resnet_path = './resnet50_captioning.pt'
     resnet_path = './resnet5010.pt'
     # global encoder
@@ -124,7 +124,7 @@ def predict_caption(image_bytes):
     
     captions = []
     img_t = transform_image(image_bytes)
-    for i in range(2,6):
+    for i in range(1,6):
         encoded_output = encoder(img_t.unsqueeze(0).to(device))
         caps = decoder.beam_search(encoded_output,i)
         caps = caps[1:-1]
@@ -133,7 +133,7 @@ def predict_caption(image_bytes):
         print(caption)
         captions.append(caption)
     for i in range(len(captions)):
-        s = ("** Prediction " + str(i + 1) + ": " + captions[i] + "**")
+        s = ("** Beam index " + str(i) + ": " + captions[i] + "**")
         st.markdown(s)        
 
 @st.cache(ttl=3600, max_entries=10)
