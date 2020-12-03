@@ -92,10 +92,10 @@ def load_model():
     learning_rate = 4e-5 # Modifed it after 10th epoch
     # resnet_path = './resnet50_captioning.pt'
     resnet_path = './resnet5010.pt'
-    # global encoder
+    
     encoder = EncoderCNN()
 
-    # Don't want to download pretrained resnet again even though not even fine-tuned!
+    # Load resnet weights
     encoder.load_state_dict( torch.load( resnet_path, map_location = 'cpu') )
     encoder.to(device)
     encoder.eval() # V. important to switch off Dropout and BatchNorm
