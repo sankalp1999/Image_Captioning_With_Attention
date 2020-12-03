@@ -124,7 +124,7 @@ def predict_caption(image_bytes):
     
     captions = []
     img_t = transform_image(image_bytes)
-    for i in range(1,6):
+    for i in range(1,8):
         encoded_output = encoder(img_t.unsqueeze(0).to(device))
         caps = decoder.beam_search(encoded_output,i)
         caps = caps[1:-1]
@@ -133,7 +133,7 @@ def predict_caption(image_bytes):
         print(caption)
         captions.append(caption)
     for i in range(len(captions)):
-        s = ("** Beam index " + str(i) + ": " + captions[i] + "**")
+        s = ("** Beam index " + str(i + 1) + ": " + captions[i] + "**")
         st.markdown(s)        
 
 @st.cache(ttl=3600, max_entries=10)
