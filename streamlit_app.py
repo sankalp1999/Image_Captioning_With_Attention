@@ -182,8 +182,8 @@ if __name__ == '__main__':
     # Pro Tips
     If you are getting funny predictions \n
     1. Prefer using the app from PC :computer:
-    2. Upload less complex images.
-    3. CaptionBot likes dogs :dog: , men, women and kids.
+    2. Upload less complex image.
+    3. CaptionBot likes dogs :dog: , men, women and kids. Sorry catlovers.
     4. Profile pictures(Whatsapp) are \n good candidates!
     
     **Try this** :wink:
