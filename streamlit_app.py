@@ -171,7 +171,7 @@ if __name__ == '__main__':
     
     args = { 'sunset' : 'imgs/sunset.jpeg' }
     
-    img_upload  = st.file_uploader(label= 'Upload Image', type = ['png', 'jpg', 'jpeg'])
+    img_upload  = st.file_uploader(label= 'Upload Image', type = ['png', 'jpg', 'jpeg','webp'])
     
     img_open = args['sunset'] if img_upload is None else img_upload
     
@@ -195,7 +195,7 @@ if __name__ == '__main__':
     
     ''')
     
-    st.sidebar.markdown('''Check the source code [here](https://github.com/sankalp1999/Image_Captioning)
+    st.sidebar.markdown('''Check the model details [here](https://github.com/sankalp1999/Image_Captioning)
     \n Liked it? Give a :star:  on GitHub ''')
     
     st.image(image,use_column_width=True,caption="Your image")
@@ -205,4 +205,7 @@ if __name__ == '__main__':
         predict_caption(image)
         st.success("Click again to retry or try a different image by uploading")
         st.balloons()
- 
+    st.markdown('
+                
+                For more details, check [Github](https://github.com/sankalp1999/Image_Captioning_With_Attention)
+               ')
