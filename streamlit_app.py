@@ -205,6 +205,7 @@ if __name__ == '__main__':
         predict_caption(image)
         st.success("Click again to retry or try a different image by uploading")
         st.balloons()
-    st.markdown('''
-                For more details, check [Github](https://github.com/sankalp1999/Image_Captioning_With_Attention)
-               ''')
+        st.markdown('''
+                    \n
+                    For more details, check [Github](https://github.com/sankalp1999/Image_Captioning_With_Attention)
+                   ''')
