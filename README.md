@@ -146,9 +146,9 @@ Let's see how this was possible in the next section.
 
 ### General idea
 
-The model works on sequence-to-sequence learning (Seq2Seq). This was introduced by [Google](https://papers.nips.cc/paper/2014/file/a14ac55a4f27472c5d894ec1c3c743d2-Paper.pdf) in 2014.(Check out [this](https://www.youtube.com/watch?v=MqugtGD605k&ab_channel=Weights%26Biases)  and  [video](https://youtu.be/oF0Rboc4IJw) for a quick understanding of the key concepts.)
+The model works on sequence-to-sequence learning (Seq2Seq). This architecture was introduced by [Google](https://papers.nips.cc/paper/2014/file/a14ac55a4f27472c5d894ec1c3c743d2-Paper.pdf) in 2014.(Check out [this](https://www.youtube.com/watch?v=MqugtGD605k&ab_channel=Weights%26Biases)  and  [video](https://youtu.be/oF0Rboc4IJw) for a quick understanding of the key concepts.)
 
-So in simple words, the encoder's task is to identify the features of the input (text in NMT or image in Image Captioning). These representations are provided to the "Decoder" to decode some outputs. 
+So in simple words, the encoder's task is to identify the features of the input (text in Neural Machine Translation or image in Image Captioning). These representations are provided to the "Decoder" to decode some outputs. Note that **the size of the input sequence and the output sequence is going to be different. So, the encoder passes some vector from which the decoder then decodes a sequence. **
 
 The encoder for example take CNN continuously downsamples (convolution and max pooling continously take max of the pixels. This retains only the most important information). Then we can pass the (embedding of the words + features in  Neural Machine Translation), (embedding + CNN features Image Captioning)  and provide it to the decoder. (Attention related details have been discussed later)
 
@@ -170,7 +170,7 @@ Based on the paper - Show, Attend and Tell
 
 Flickr8K- It is a relatively small dataset of 8000 images with 5 captions each. There are two versions found on the web - one with splits and one without splits. I used the latter and created manual split.  
 
-Flickr30K (in version 2) - 31000 images with 5 captions each. Better train on this after training on flickr8k because one epoch takes much longer.
+Flickr30K (in version 2) - 31000 images with 5 captions each. It's better to train on Flickr30K after training on Flickr8k because one epoch takes much longer.
 
 
 ### Seq2Seq model
@@ -226,7 +226,8 @@ But if you observe translators, they hear the sentence pieces, give attention to
 
 ![diagram.png](imgs/diagram.png)
 
-To address this issue, in 2014 soft attention was first introduced in **[Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/pdf/1409.0473.pdf).**  The authors of ShowAttendTell adapt the same for this model.
+To address this issue, Soft attention was introduced in **[Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/pdf/1409.0473.pdf).**  The authors of Show ,Attend and Tell adapt soft attention mechanism with some modifications/additions. They also 
+introduce a "Hard attention" mechanism (which is more complicated and cannot be trained by backpropagation)
 
 Coming back to CaptionBot, we pass the encoding(features) along with the hidden state(all the timesteps) of current batch to the attention network. **Here, we calculate context for each hidden state timestep and return a context vector.**
 
