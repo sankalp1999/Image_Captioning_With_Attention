@@ -292,6 +292,8 @@ This score was attained near 14th epoch. (I trained the deployed model from 10th
 | BLEU-4       |  0.1505 |
 
 ### Flickr30K model
+Evaluation over ~1000 images in the test split. Scores are mostly around the scores in the table.
+
 | Torch metric | Score   |
 |--------------|---------|
 | BLEU-1       |  0.5920 |
