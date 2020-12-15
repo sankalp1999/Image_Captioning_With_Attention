@@ -146,7 +146,6 @@ class EncoderCNN(nn.Module):
         
         return features
     
-    
 # In decoder, we use an LSTM cell. So, remove num_layers
 # https://stackoverflow.com/questions/57048120/pytorch-lstm-vs-lstmcell
 # In seq to seq model, it's more like gettign the state and ending the for loop when 
@@ -219,7 +218,6 @@ class Decoder(nn.Module):
         Initialise the hidden states before forward prop. As given in the paper.
         Authors take the mean of annotation vector across L dimension. Pass it through an MLP.
         '''
-        
         # encoder_output : shape (batch_size, L, encoder_dim=D)
         
         mean = (encoder_output).mean(dim = 1) # Take mean over L
@@ -241,7 +239,6 @@ class Decoder(nn.Module):
         self.embed.weight.data.uniform_(-0.1,0.1)
         self.fc.weight.data.uniform_(-0.1,0.1)
         self.fc.bias.data.fill_(0)
-    
     
     # Thankful to sgrvinod implementation for this part. 
     # Note that without :batch_size_t i.e without using 
@@ -265,12 +262,17 @@ class Decoder(nn.Module):
         
         max_caption_length = caption.shape[-1] # shape : (batch_size, max_caption) 
         
-
         # Trick for fast training and avoiding <PAD> during forward of Decoder
+        # Also, to use pack_padded_sequence(see train.py), we need sorted sequences
+        # This helps to keep min padded elements at top and so on.
         caption_lengths, sort_ind = caption_lengths.sort(dim=0, descending=True)
         encoder_output = encoder_output[sort_ind]
         caption = caption[sort_ind]
         
+        # It is possible to avoid this, not use pack_padded_sequences and evaluate loss
+        # just by reshaping. But this method is more sophisticated, slightly faster and 
+        # it has been more used in the available implementations.
+     
         # print(sort_ind)
         
         # We won't decode at <EOS> i.e the last time step
@@ -284,8 +286,6 @@ class Decoder(nn.Module):
         # Concat and pass through lstm to get hidden states
         
         h, c = self.initialise_hidden_states(encoder_output)
-        
-        
         
         # Exclude <EOS>, t is the th timestep
         # We get all the embeddings for the t timestep
@@ -318,7 +318,6 @@ class Decoder(nn.Module):
             
         return predictions, alphas, caption, lengths
         
-        
     
     def deep_output_layer(self, embedded_caption, h, context_vector):
         """
@@ -331,10 +330,11 @@ class Decoder(nn.Module):
         # Not working properly in early part of training. I don't know about this clearly.
         # scores = self.L_o(self.dropout(embedded_caption + self.L_h(h) + self.L_z(context_vector)))
         
+        ## UPDATE: Check Flickr30K model changes for a 2 layer neural network(Deep output RNN). 
+        
         dropout = nn.Dropout(0.2)
         scores = dropout(self.fc(h))
         return scores
-    
 
     # Greedy. Just keep passing the prediction and select the one with the top score.
     def predict_caption(self, encoder_output, captions):
@@ -387,7 +387,7 @@ class Decoder(nn.Module):
     # in most cases. Refer https://www.youtube.com/watch?v=RLWuzLLSIgw  
 
     # Inspired from Sgrvinod implementation(almost same)
-    # This is the game changer in many scenarios. E
+    # This is the game changer in many scenarios. 
     def beam_search(self, encoder_output, beam_size = 3):
         
         device = self.device
@@ -489,7 +489,7 @@ class Decoder(nn.Module):
             seq = complete_seqs[i]
             return seq
         else:
-            return [1,2] # If cannot predict <EOS> in the beginning of training
+            return [1,2] # If cannot predict <EOS> in the beginning of training because I was checking an untrained network, very dumb of me.
         return complete_seqs
 
 
