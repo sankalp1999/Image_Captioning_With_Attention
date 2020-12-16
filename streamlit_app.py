@@ -178,9 +178,9 @@ if __name__ == '__main__':
     
     st.sidebar.markdown('''
     # Pro Tips
-    If you are getting funny predictions \n
+    If you are getting funny/random predictions \n
     1. Prefer using the app from PC :computer:
-    2. Upload less complex image.
+    2. It works best with interaction of people with objects.
     3. CaptionBot likes dogs :dog: , men, women and kids. Sorry catlovers.
     4. Profile pictures(Whatsapp) are \n good candidates!
     
