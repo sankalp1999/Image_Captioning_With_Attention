@@ -171,7 +171,8 @@ Based on the paper - Show, Attend and Tell
 Flickr8K- It is a relatively small dataset of 8000 images with 5 captions each. There are two versions found on the web - one with splits and one without splits. I used the latter and created manual split.  
 
 Flickr30K (in version 2) - 31000 images with 5 captions each. It's better to train on Flickr30K after training on Flickr8k because one epoch takes much longer.
-
+> "Our data set  consists of 31,783 photographs of everyday activities, events and scenes (all harvested from Flickr) and 158,915 captions
+  (obtained via crowdsourcing).", [paper](http://hockenmaier.cs.illinois.edu/DenotationGraph/TACLDenotationGraph.pdf)
 
 ### Seq2Seq model
 
