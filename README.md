@@ -115,7 +115,7 @@ streamlit run streamlit_app.py # Run the app on local machine
 Additional note: The only difference between the requirements.txt files is streamlit.
 Streamlit is a great platform which made the deployment part much easier. It's harder to deploy on Heroku.
 
-## The Good
+## During training
 More examples can be directly seen on the .ipynb file in pytorch_model/kaggle_notebook.
 
 
@@ -129,12 +129,12 @@ More examples can be directly seen on the .ipynb file in pytorch_model/kaggle_no
 ---
 
 
-## Streamlit samples
-![st1.png](/imgs/st1.png)
+## Streamlit samples(good ones)
+![sample1.png](/imgs/sample1.png)
 
 ---
 
-![st2.png](/imgs/st2.png)
+![sample2.png](/imgs/sample2.png)
 
 
 Let's see how this was possible in the next section.
