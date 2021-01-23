@@ -25,8 +25,8 @@ You can check some of the results [below](https://github.com/sankalp1999/Image_C
 Contents of README
 - [Repository structure](https://github.com/sankalp1999/Image_Captioning#repository-structure)
 - [Running locally](https://github.com/sankalp1999/Image_Captioning#repository-structure)
-- [Good predictions](https://github.com/sankalp1999/Image_Captioning#repository-structure)
-- [Streamlit samples](https://github.com/sankalp1999/Image_Captioning#streamlit-samples)
+- [Results during training](https://github.com/sankalp1999/Image_Captioning_With_Attention#during-training)
+- [Streamlit samples](https://github.com/sankalp1999/Image_Captioning_With_Attention/blob/main/README.md#streamlit-samplesgood-ones)
 - [Model architecture and Concepts](https://github.com/sankalp1999/Image_Captioning#model-architecture)
 - [Results](https://github.com/sankalp1999/Image_Captioning#results)
 - [References](https://github.com/sankalp1999/Image_Captioning#references-and-acknowledgement)
