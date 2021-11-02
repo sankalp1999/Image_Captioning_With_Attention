@@ -6,6 +6,11 @@
 
 The [Caption Bot](https://share.streamlit.io/sankalp1999/image_captioning_with_attention/main) takes your images and generates a caption in less than 40 words (even though a picture is worth a thousand words.....)
 
+
+
+![demo_gif](https://user-images.githubusercontent.com/45618047/139804777-c1f670a8-a62f-4396-bffc-2dd6a620408a.gif)
+
+
 ---
 
 ## Try the CaptionBot V2.0 yourself!
